@@ -2,20 +2,41 @@
 <html lang="en-us">
   <head>
   <meta charset="UTF-8">
-  <link rep=“stylesheet” src="assets/css/reset.css">
+ 
   <title>RRS | The Psychic Game</title>
-</head>
-<body>
-  <div id="thePsychicGame">
-    <h1>The Psychic Game</h1>
-    <p>Guess what letter I'm thinking of:</p>
-    <p>Wins:</p>
-    <p>Losses:</p>
-    <p>Guesses Remaining:</p>
-    <p>Your Guesses so far:</p>
-  </div>
 
- <script src="game.js"></script>
+</head>
+
+<script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+            apiKey: "AIzaSyD9XEx6O9kjw0SuRRXcVjjC9k30l4PuxJc",
+            authDomain: "author-page.firebaseapp.com",
+            databaseURL: "https://author-page.firebaseio.com",
+            projectId: "author-page",
+            storageBucket: "author-page.appspot.com",
+            messagingSenderId: "797162172587"
+        };
+        
+        firebase.initializeApp(config);
+  </script>
+  
+  <script>
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      document.body.innerHTML = "<h1>Congrats " + user.displayName + ", you are done!</h1>"
+    } else {
+      console.log("No user signed in");
+
+    }
+  });
+  </script>
+
+<body>
+  
+  <div id="Firebaseui-auth-container"></div>
+ 
 
 </body>
 
